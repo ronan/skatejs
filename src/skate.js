@@ -116,7 +116,7 @@
         o.controls.push($.extend({type: 'next'}, {text: o.next}));
       }
       if (o.auto && o.auto > 0) {
-        o.controls.push($.extend({type: 'autorotate'}, {timeout: o.auto, pause: o.pause}));
+        o.controls.push($.extend({type: 'autoadvance'}, {timeout: o.auto, pause: o.pause}));
       }
       if (o.swipe) {
         o.controls.push($.extend({type: 'swipe'}, {}));
@@ -132,8 +132,10 @@
       for (var i in o.controls) {
         var opt = $.extend({}, defaults, o.controls[i]);
 
+        // Not all controls need added markup but since they're all ui widgets we have to apply them to something.
         var control = $('<div></div>').addClass(opt.widget_class).addClass(opt.widget_class + '-' + opt.type);
         var widget = 'skatecontrol_' + opt.type;
+
         if ($.ui[widget]) {
           // Look at this line! Holy syntax, Batman!
           $(control)[widget]($.extend({}, opt, {skate: this}));
@@ -465,7 +467,6 @@
         position.left -= skate._width() - itemwidth;
       }
 
-
       skate.wrapper.stop()[func](
         {
           left: -position.left,
@@ -589,7 +590,7 @@
     }
   });
 
-
+  // Add a set of tabs to the slider.
   $.widget("ui.skatecontrol_tabs", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {
       selector: '.tab',
@@ -646,7 +647,8 @@
     }
   });
 
- $.widget("ui.skatecontrol_pager", $.ui.skatecontrol_tabs, {
+  // A pager widget. Similar to tabs but numbered.
+  $.widget("ui.skatecontrol_pager", $.ui.skatecontrol_tabs, {
     options: $.extend({}, $.ui.skatecontrol_tabs.prototype.options, {
       selector: ''
     }),
@@ -672,6 +674,7 @@
     }
   });
 
+  // A previous or next button.
   $.widget("ui.skatecontrol_prevnext", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {}),
     link: null,
@@ -716,6 +719,8 @@
       text: '»'
     })
   });
+
+  // A touch-based swipe control.
   $.widget("ui.skatecontrol_swipe", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {}),
     link: null,
@@ -755,7 +760,9 @@
       }
     }
   });
-  $.widget("ui.skatecontrol_autorotate", $.ui.skatecontrol, {
+
+  // A control to automatically advance the slideshow after a set period.
+  $.widget("ui.skatecontrol_autoadvance", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {
       timeout: 5000,
       pause: true
@@ -796,6 +803,8 @@
       }, this.options.timeout);
     }
   });
+
+  // Advance the slideshow when the current item is clicked.
   $.widget("ui.skatecontrol_click", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {
       preventdefault: false
@@ -812,6 +821,8 @@
       });
     },
   });
+
+  // Add a current/total count.
   $.widget("ui.skatecontrol_count", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {
       text: '%current/%total'
@@ -825,6 +836,8 @@
       $(this.element).html(text);
     }
   });
+
+  // Automatically start and pause audio and video when a slide is activated or deactivated.
   $.widget("ui.skatecontrol_mediacontrol", $.ui.skatecontrol, {
     options: $.extend({}, $.ui.skatecontrol.prototype.options, {
       autoplay: false,
