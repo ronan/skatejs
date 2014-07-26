@@ -48,13 +48,13 @@
 
 
       // callbacks
-      activate: null,
-      afterInitialize: null,
-      beforeActivate: null,
-      beforeLoad: null,
+      activate: null,                                         // Called when the widget is activated.
+      afterInitialize: null,                                  // Called after initialization
+      beforeActivate: null,                                   // Called at the start of initialization.
+      beforeLoad: null,                                       // Called before the load
       load: null,
       hash: null,                                             // An optional callback to generate the url hash for a given item.
-      itemActivate: null
+      itemActivate: null                                      // Called when a slide is activated.
     },
 
     _create: function() {
