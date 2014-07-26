@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>Skate.js Demo</title>
+    <link rel="stylesheet" href="demo.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="../src/skate.js"></script>
+    <script src="jquery.touchSwipe.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.simple-demo').skate(
+          {
+            //'tabs': '.tab',
+            'items': '.item',
+            //'auto': 1000,
+            'loop': true,
+            'updateURL': true,
+            'pager': false,
+            'next': false,
+            'prev': false,
+            'controls': [
+              {
+                type: 'pager',
+                position: 'after',
+                options: {}
+              },
+              {
+                type: 'tabs',
+                position: 'before',
+                options: {
+                  'selector': '.tab',
+                }
+              },
+              {
+                type: 'next',
+                position: 'after',
+                options: {}
+              },
+              {
+                type: 'prev',
+                position: 'after',
+                options: {}
+              },
+            ]
+          }
+        );
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Skate.js Demonstration</h1>
+    <div class="simple-demo">
+      <div class="tabs">
+        <div class="tab">Item 1</div>
+        <div class="tab">Item 2</div>
+        <div class="tab">Item 3</div>
+        <div class="tab">Item 4</div>
+      </div>
+      <div class="item">
+        <div class="slide">
+          <img src="img/ice-costel-slincu.jpg" />
+          <div class="caption">Ice by <a href="https://www.flickr.com/photos/cost3l/">Costel Slincu</a></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide">
+          <img src="img/ice-margagnoni.jpg" />
+          <div class="caption">Ice by <a href="https://www.flickr.com/photos/50335549@N05/">Massimo Margagnoni</a></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide">
+          <img src="img/ice-show-tonelli.jpg" />
+          <div class="caption">Ice Show by <a href="https://www.flickr.com/photos/nicholas_t/">Nicholas A. Tonelli</a></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide">
+          <img src="img/ice-crystal-andreas-brandmaier.jpg" />
+          <div class="caption">Ice Crystal by <a href="https://www.flickr.com/photos/brandmaier/">Andreas Brandmaier</a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
