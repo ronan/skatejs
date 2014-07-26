@@ -1,4 +1,4 @@
-skatejs
+Skate.js
 =======
 
 A simple, flexible, responsive jQuery slideshow/tab library.
